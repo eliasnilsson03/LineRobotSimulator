@@ -3,7 +3,7 @@ import pygame
 from robot import Robot
 
 def drawRobot(robot, screen):
-  pygame.draw.rect(screen, (110, 127, 128), (robot.x, robot.y, robot.width, robot.height))
+ pygame.draw.rect(screen, (110, 127, 128), (robot.x, robot.y, robot.width, robot.height))
 
 def draw_line(screen, midx, midy):
   loops = 5 # För tätare, öka denna
@@ -12,14 +12,13 @@ def draw_line(screen, midx, midy):
     radius = scale * angle 
     x = int(midx + radius * math.cos(math.radians(angle)))
     y = int (midy + radius * math.sin(math.radians(angle)))
-    pygame.draw.circle(screen, (200, 200, 200), (x, y), 5)
-
+    pygame.draw.circle(screen, (255, 255, 255), (x, y), 5)
 
 
 def main():
   pygame.init()
 
-  robot = Robot(100, 100, 50, 30)
+  robot = Robot(350, 350, 0.0, 30, 15)
   size = (750, 750)
   screen = pygame.display.set_mode(size)
   pygame.display.set_caption("LineRobot Simulation")

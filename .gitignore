@@ -1,0 +1,94 @@
+# -----------------------------
+# Python
+# -----------------------------
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Distribution / packaging
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual environments
+venv/
+env/
+.venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Jupyter Notebooks
+.ipynb_checkpoints
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+pytestdebug.log
+
+# PyCharm / VSCode
+.idea/
+.vscode/
+*.code-workspace
+
+# OS / Editor specific
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# -----------------------------
+# Pygame specific
+# -----------------------------
+# Ignore compiled sound, image and font cache
+*.wav~
+*.ogg~
+*.mp3~
+*.jpg~
+*.png~
+*.bmp~
+*.gif~
+*.ttf~
+*.otf~
+
+# Ignore temporary runtime files
+assets/temp/
+*.tmp
+*.bak
+
+# If you have a folder with assets you want tracked, remove the next line
+# assets/
+
+# -----------------------------
+# Miscellaneous
+# -----------------------------
+*.swp
+*.swo
+*.bak
+*.tmp
+*.pid

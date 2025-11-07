@@ -3,6 +3,9 @@
 # Hur används sensor objektet??
 # I robot skapas tre olika sensorer, en för left, right och mid
 
+# 0 för svart linje
+# 1 för vit linje 
+
 from pos import Pos
 
 class Sensor:

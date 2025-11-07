@@ -1,0 +1,21 @@
+# Allmänt om sensorerna
+Sensorerna är utformade för att endast använda punktmätning.
+
+
+# Sensorgeometri
+Varje sensor har en position och riktning relativt till robotens centrum.
+Robotens pos är (xr, yr, thetar), sensor sitter på d avstånd från centrum i längdriktning, med offset s i sidled:
+x = xr + dcos(thetar) - ssin(thetar)
+y = yr + dsin(thetar) + scos(thetar)
+
+Formlerna ger sensorernas absoluta positioner i världens koordinater.
+
+# Samspel sensor och styrning
+Roboten läser av sensorernas och räknar ut sitt avstånd relativt till linjens mitt.
+Det värde blir felvärdet.
+Därefter uppdateras styringen.
+
+
+Förbättringsmöjligheter:
+- Lägga till brus
+

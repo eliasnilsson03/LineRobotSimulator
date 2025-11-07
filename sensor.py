@@ -8,7 +8,9 @@
 
 from pos import Pos
 import math
+from world import World
 
+# DÖP OM ALLA ANGLE TILL THETA
 class Sensor:
   def __init__(self, x: float, y: float, angle: float, d: float, s: float):
     xs = x + d * math.cos(angle) - s * math.sin(angle)
@@ -19,16 +21,16 @@ class Sensor:
     self.pos = Pos(xs, ys, angle)
 
 
-  def update(self, newX: float, newY: float, newAngle: float):
+  def update(self, new_x: float, new_y: float, new_angle: float):
     # Beräkna om x, y
-    newXS = newX + self.d * math.cos(newAngle) - self.s * math.sin(newAngle)
-    newYS = newY + self.d * math.sin(newAngle) + self.s * math.cos(newAngle)
-    self.pos = Pos(newXS, newYS, newAngle)
+    new_xs = new_x + self.d * math.cos(new_angle) - self.s * math.sin(new_angle)
+    new_ys = new_y + self.d * math.sin(new_angle) + self.s * math.cos(new_angle)
+    self.pos = Pos(new_xs, new_ys, new_angle)
 
-  def read():
-    # Läs in färgen framför sensorn
-    pass
+  def read(self, world: World):
+    x = self.pos.x
+    y = self.pos.y
 
-
-
-# class Sensor
+    value = world.reflectance_at(x, y)
+    return value
+    

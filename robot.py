@@ -19,22 +19,21 @@ import sensor
 # Tre sensorer (left, right, mid)
 # Vilka metoder?
 # init, move, lostLine
-
+from sensor import Sensor
 
 class Robot:
-    def __init__(self, x: int, y: int, angle: float, width: int, length: int, screen):
+    def __init__(self, x: float, y: float, angle: float, width: int, length: int):
         self.pos = Pos(x, y, angle)
         self.width = width
         self.length = length
-        self.screen = screen
 
         # Skapar tre sensorer alla längst fram, en placerad till vänster, en i mitten och en till höger
         # En sensor tar in värdena (x, y, angle, avstånd från mitt längdriktning, offset sidled)
         self.sensors = [
-          sensor(x, y, angle, length / 2, 1), # Vänster
-          sensor(x, y, angle, length / 2, 0), # Mitten
-          sensor(x, y, angle, length / 2, -1) # Höger
-       ]
+            Sensor(x, y, angle, length / 2,  width / 3),   # vänster
+            Sensor(x, y, angle, length / 2,  0),           # mitten
+            Sensor(x, y, angle, length / 2, -width / 3)    # höger
+        ]
 
     def move(self):
         # uppdaterar position
@@ -43,7 +42,12 @@ class Robot:
         # ska även uppdatera sensornas positioner
 
     def follow_line(self):
-        pass
+        for sensor in self.sensors:
+            if (not sensor.read()):
+                self.lost_line(self)
+        
+        self.move(self)
+        
 
     def lost_line(self):
         pass

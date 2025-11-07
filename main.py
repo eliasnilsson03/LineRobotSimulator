@@ -2,8 +2,9 @@ import math
 import pygame
 from robot import Robot
 
+
 def drawRobot(robot, screen):
- pygame.draw.rect(screen, (110, 127, 128), (robot.x, robot.y, robot.width, robot.height))
+ pygame.draw.rect(screen, (201, 52, 52), (robot.pos.x, robot.pos.y, robot.width, robot.height))
 
 def draw_line(screen, midx, midy):
   loops = 5 # För tätare, öka denna
@@ -18,26 +19,29 @@ def draw_line(screen, midx, midy):
 def main():
   pygame.init()
 
-  robot = Robot(350, 350, 0.0, 30, 15)
   size = (750, 750)
   screen = pygame.display.set_mode(size)
+  robot = Robot(350, 350, 0.0, 30, 15, screen)
   pygame.display.set_caption("LineRobot Simulation")
   clock = pygame.time.Clock()
 
   running = True
   
   while running :
+
+    
     for event in pygame.event.get():
       if event.type == pygame.QUIT:
         running = False
       
-      screen.fill((30, 30, 30))
+    dt = clock.get_time() / 1000.0
+    screen.fill((30, 30, 30))
+    draw_line(screen, size[0] / 2, size[1] / 2)
+    drawRobot(robot, screen)
 
-      draw_line(screen, size[0] / 2, size[1] / 2)
-      drawRobot(robot, screen)
 
-      pygame.display.flip()
-      clock.tick(60)
+    pygame.display.flip()
+    clock.tick(60)
 
 
   pygame.quit()

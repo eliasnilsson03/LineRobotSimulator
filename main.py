@@ -3,7 +3,7 @@ import pygame
 from robot import Robot
 
 
-def drawRobot(robot, screen):
+def draw_robot(robot, screen):
  pygame.draw.rect(screen, (201, 52, 52), (robot.pos.x, robot.pos.y, robot.width, robot.height))
 
 def draw_line(screen, midx, midy):
@@ -37,7 +37,7 @@ def main():
     dt = clock.get_time() / 1000.0
     screen.fill((30, 30, 30))
     draw_line(screen, size[0] / 2, size[1] / 2)
-    drawRobot(robot, screen)
+    draw_robot(robot, screen)
 
 
     pygame.display.flip()

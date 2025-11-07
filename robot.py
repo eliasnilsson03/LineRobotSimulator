@@ -1,6 +1,7 @@
 import math
 import pygame
 from pos import Pos
+import sensor
 
   # Tre sensorer, en till vänster, en i mitten och en till höger för att se pixlar
   # Om vit pixel = på linjen
@@ -21,13 +22,27 @@ from pos import Pos
 
 
 class Robot:
-  def __init__(self, x: int, y: int, angle: float, width: int, height: int, screen):
-      self.pos = Pos(x, y, angle)
-      self.width = width
-      self.height = height
-      self.screen = screen
+    def __init__(self, x: int, y: int, angle: float, width: int, height: int, screen):
+        self.pos = Pos(x, y, angle)
+        self.width = width
+        self.height = height
+        self.screen = screen
 
-  def move(self):
-      # uppdaterar position
-      self.pose.x += math.cos(self.pose.theta) * self.speed
-      self.pose.y += math.sin(self.pose.theta) * self.speed
+        # Skapar tre sensorer alla längst fram, en placerad till vänster, en i mitten och en till höger
+        self.sensors = [
+          sensor(self.width / 2, 0),
+          sensor(self.width / 2, self.width / 2),
+          sensor(0, self.width / 2)
+       ]
+
+    def move(self):
+        # uppdaterar position
+        self.pos.x += math.cos(self.pos.theta) * self.speed
+        self.pos.y += math.sin(self.pos.theta) * self.speed
+        # ska även uppdatera sensornas positioner
+
+    def follow_line(self):
+        pass
+
+    def lost_line(self):
+        pass

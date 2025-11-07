@@ -1,0 +1,1 @@
+# Gränssnitt som hanterar t.ex. is_on_line eller liknande

@@ -3,12 +3,12 @@ import pygame
 from pos import Pos
 import sensor
 
-  # Tre sensorer, en till vänster, en i mitten och en till höger för att se pixlar
-  # Om vit pixel = på linjen
-  # Om vit pixel = av linjen
+# Tre sensorer, en till vänster, en i mitten och en till höger för att se pixlar
+# Om vit pixel = på linjen
+# Om vit pixel = av linjen
 
-  # Om helt av linje, räkna hur länge sedan den gick av
-  # vänd sedan i senaste riktningen
+# Om helt av linje, räkna hur länge sedan den gick av
+# vänd sedan i senaste riktningen
 
 # Vad gör robot??
 # Skapar ett robot objekt, bestående av en rektangel med tre runda sensorer i fronten

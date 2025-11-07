@@ -22,17 +22,18 @@ import sensor
 
 
 class Robot:
-    def __init__(self, x: int, y: int, angle: float, width: int, height: int, screen):
+    def __init__(self, x: int, y: int, angle: float, width: int, length: int, screen):
         self.pos = Pos(x, y, angle)
         self.width = width
-        self.height = height
+        self.length = length
         self.screen = screen
 
         # Skapar tre sensorer alla längst fram, en placerad till vänster, en i mitten och en till höger
+        # En sensor tar in värdena (x, y, angle, avstånd från mitt längdriktning, offset sidled)
         self.sensors = [
-          sensor(self.width / 2, 0),
-          sensor(self.width / 2, self.width / 2),
-          sensor(0, self.width / 2)
+          sensor(x, y, angle, length / 2, 1), # Vänster
+          sensor(x, y, angle, length / 2, 0), # Mitten
+          sensor(x, y, angle, length / 2, -1) # Höger
        ]
 
     def move(self):

@@ -20,34 +20,42 @@ import sensor
 # Vilka metoder?
 # init, move, lostLine
 from sensor import Sensor
+from world import World
 
 class Robot:
-    def __init__(self, x: float, y: float, angle: float, width: int, length: int):
-        self.pos = Pos(x, y, angle)
+    def __init__(self, x: float, y: float, theta: float, width: int, length: int, world: World):
+        self.pos = Pos(x, y, theta)
         self.width = width
         self.length = length
-
+        self.world = world
+        self.speed = 80.0
         # Skapar tre sensorer alla längst fram, en placerad till vänster, en i mitten och en till höger
         # En sensor tar in värdena (x, y, angle, avstånd från mitt längdriktning, offset sidled)
         self.sensors = [
-            Sensor(x, y, angle, length / 2,  width / 3),   # vänster
-            Sensor(x, y, angle, length / 2,  0),           # mitten
-            Sensor(x, y, angle, length / 2, -width / 3)    # höger
+            Sensor(x, y, theta, length - 4,  width / 5),   # vänster
+            Sensor(x, y, theta, length - 4,  0),           # mitten
+            Sensor(x, y, theta, length - 4, -width / 5)    # höger
         ]
 
-    def move(self):
+    def move(self, dt: float):
         # uppdaterar position
-        self.pos.x += math.cos(self.pos.theta) * self.speed
-        self.pos.y += math.sin(self.pos.theta) * self.speed
+        ax = math.cos(self.pos.theta)
+        ay = math.sin(self.pos.theta)
+        self.pos.x += self.speed * dt * ax
+        self.pos.y += self.speed * dt * ay
         # ska även uppdatera sensornas positioner
 
-    def follow_line(self):
+        for s in self.sensors:
+            s.update(self.pos.x, self.pos.y, self.pos.theta)
+
+    def follow_line(self, dt: float):
         for sensor in self.sensors:
-            if (not sensor.read()):
-                self.lost_line(self)
-        
-        self.move(self)
-        
+            if (sensor.read(self.world) < 1):
+                # self.lost_line(self)
+                pass
+            else:
+                self.move(dt)
+            
 
     def lost_line(self):
         pass

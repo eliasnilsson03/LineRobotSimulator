@@ -1,8 +1,6 @@
 # 0 för svart linje
 # 1 för vit linje 
-
 import pygame
-
 
 class World:
   def __init__(self, screen: pygame.Surface):

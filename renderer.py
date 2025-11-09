@@ -44,4 +44,5 @@ class Renderer:
   def draw_line(self):
     x1, y1 = 0, self.window_height // 2
     x2, y2 = self.window_width, self.window_height // 2
-    pygame.draw.line(self.screen, (255, 255, 255), (x1, y1), (x2, y2), 30)
+    # +40 respktive -40 för att inte linjen ska täcka hela fönstret
+    pygame.draw.line(self.screen, (255, 255, 255), (x1 + 40, y1), (x2 - 40, y2), 10)

@@ -28,7 +28,7 @@ class Robot:
         self.width = width
         self.length = length
         self.world = world
-        self.speed = 80.0
+        self.speed = 40.0
         # Skapar tre sensorer alla längst fram, en placerad till vänster, en i mitten och en till höger
         # En sensor tar in värdena (x, y, angle, avstånd från mitt längdriktning, offset sidled)
         self.sensors = [

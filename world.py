@@ -1,4 +1,3 @@
-# World som hanterar t.ex. is_on_line eller liknande
 # 0 för svart linje
 # 1 för vit linje 
 

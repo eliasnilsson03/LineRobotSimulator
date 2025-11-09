@@ -15,6 +15,35 @@ Roboten läser av sensorernas och räknar ut sitt avstånd relativt till linjens
 Det värde blir felvärdet.
 Därefter uppdateras styringen.
 
+# PID
+Setpoint = mitt på linjen
+P-del reagerar på ur stort felet är just nu, ju större avvikelse från linjen desto större korrigering krävs
+I-del ackumulerar fel över tid och rätar upp långsamma förskjutningar, t.ex. drar roboten konstant åt vänster
+D-del reagerar på förändrignshastigheten i felet och bromsar översvängningen
+
+
+# Differential Drive Kinematics
+Vänster hjulhastighet = v_left
+Höger hjulhastighet = v_right
+Hjulavstånd (bredd) = w
+v = (v_right + v_left) / 2 (fart framåt)
+omega = (v_right - v_left) / w (vinkelhastighet)
+
+Positionen uppdateras via:
+x_new = x + vcos(theta)dt
+y_new = y + vcos(theta)dt
+theta_new = theta + omegadt
+
+PID-regulatorn styr robotens rotation, dvs. skillnaden mellan höger och vänster hjul baserat på fel i linjeposition.
+Felet e(t) visar hur mycket roboten vikit av från mitten på linjen
+e(t) < 0 -> linjen är till vänster vilket ger v_Left < v_right
+e(t) > 0 -> linjen är till höger vilket ger v_left > v_right
+
+Styrvärdet u(t) från regulatorn används till att justera hjulhastigheterna:
+u(t) = K_p * e(t) + K_i * integral(e(t) * dt + K_d * ((d * e(t)) / dt))
+
+v_left = v_bas - u(t)
+v_right = v_bas + u(t)
 
 Förbättringsmöjligheter:
 - Lägga till brus

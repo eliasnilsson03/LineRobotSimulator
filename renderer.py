@@ -17,9 +17,9 @@ class Renderer:
         
         value = sensor.read(robot.world)
         if value == 1:
-            color = (255, 0, 0)           # röd = "på linje" (ljust)
+            color = (255, 0, 0)           # grön = "på linje" (ljust)
         else:
-            color = (0, 255, 0)           # grön = "bakgrund" (mörkt)
+            color = (0, 255, 0)           # röd = "bakgrund" (mörkt)
 
         pygame.draw.circle(self.screen, color, (sx, sy), 2)  
 
@@ -29,7 +29,7 @@ class Renderer:
     rect_x = robot_x - robot.width // 2
     rect_y = robot_y - robot.length // 2
 
-    pygame.draw.rect(self.screen, (201, 52, 52), (rect_x, rect_y, robot.width, robot.length))
+    pygame.draw.rect(self.screen, (125, 153, 165), (rect_x, rect_y, robot.width, robot.length))
     self.draw_sensors(robot)
 
   def draw_spiral(self, midx, midy):

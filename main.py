@@ -30,9 +30,7 @@ def main():
     robot.follow_line(dt)
 
     renderer.draw_robot(robot)
-
-
-
+    
     pygame.display.flip()
 
   pygame.quit()

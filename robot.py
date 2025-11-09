@@ -37,11 +37,15 @@ class Robot:
             s.update(self.pos.x, self.pos.y, self.pos.theta)
 
     def follow_line(self, dt: float):
+        weights = [-1, 0, 1]
+        sensor_values = []
+        
         for sensor in self.sensors:
-            if (sensor.read(self.world) < 1):
-                self.lost_line()
-            else:
-                self.move(dt)
+            sensor_values.append(sensor.read(self.world))
+        
+        
+
+        
             
 
     def lost_line(self):

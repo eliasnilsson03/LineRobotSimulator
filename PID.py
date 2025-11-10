@@ -25,3 +25,6 @@ class PID:
     self.e_prev = e
     u = P_out + I_out + D_out
     return u
+
+  def get_last_error(self):
+    return self.e_prev

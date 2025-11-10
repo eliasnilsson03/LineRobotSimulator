@@ -27,4 +27,6 @@ class Sensor:
 
     value = world.reflectance_at(x, y)
     return value
-    
+
+  def get_offset(self):
+    return self.s

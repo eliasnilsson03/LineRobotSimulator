@@ -1,3 +1,4 @@
+from enum import Enum
 import math
 import pygame
 from PID import PID
@@ -19,6 +20,11 @@ class Robot:
         self.world = world
         self.speed = 40.0
         self.PID = PID(0.8, 0.0, 0.05, 0)
+        
+        self.last_pv = 0
+        self.last_u = 0
+        self.last_on_line_pos = Pos(0, 0, 0)
+        
         # Skapar tre sensorer alla längst fram, en placerad till vänster, en i mitten och en till höger
         # En sensor tar in värdena (x, y, theta, avstånd från mitt längdriktning, offset sidled)
         self.sensors = [
@@ -35,11 +41,14 @@ class Robot:
         omega = (v_right - v_left) / self.width
         self.pos.theta += omega
 
+
         ax = math.cos(self.pos.theta)
         ay = math.sin(self.pos.theta)
         self.pos.x += v_new * dt * ax
         self.pos.y += v_new * dt * ay
         
+        self.last_on_line_pos = Pos(self.pos.x, self.pos.y, self.pos.theta)
+
         # uppdatera sensornas positioner
         for s in self.sensors:
             s.update(self.pos.x, self.pos.y, self.pos.theta)
@@ -57,11 +66,18 @@ class Robot:
         
         if (sum_sensor_values == 0):
             self.PID.reset()
-            self.lost_line()
+            self.lost_line(dt)
         else: 
             pv = sum(s * value for s, value in zip(sensor_offsets, sensor_values)) / sum_sensor_values
             u = self.PID.compute(pv, dt)
+            self.last_pv = pv
+            self.last_u = u
             self.move(dt, u)
          
-    def lost_line(self):
+    def lost_line(self, dt):
         print("I lost the line!")
+
+        # uppdatera sensornas positioner
+        for s in self.sensors:
+            s.update(self.pos.x, self.pos.y, self.pos.theta)
+        

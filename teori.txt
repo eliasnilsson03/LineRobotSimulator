@@ -47,4 +47,5 @@ v_right = v_bas + u(t)
 
 Förbättringsmöjligheter:
 - Lägga till brus
+- Grafritande efter PID-regleringen
 

@@ -11,6 +11,15 @@ class PID:
     self.e_prev = 0.0
     self.integral = 0.0
 
+  def set_Kp(self, new_Kp):
+    self.Kp = new_Kp
+  
+  def set_Ki(self, new_Ki):
+    self.Ki = new_Ki
+  
+  def set_Kd(self, new_Kd):
+    self.Kd = new_Kd
+
   def set_setpoint(self, new_setpoint):
     self.setpoint = new_setpoint
 

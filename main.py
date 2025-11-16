@@ -25,6 +25,7 @@ def main():
 
     screen.fill((30, 30, 30))
     renderer.draw_line()
+    # renderer.draw_spiral()
 
     dt = clock.tick(60) / 1000.0
     robot.follow_line(dt)

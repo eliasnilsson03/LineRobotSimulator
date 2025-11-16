@@ -32,13 +32,16 @@ class Renderer:
     pygame.draw.rect(self.screen, (125, 153, 165), (rect_x, rect_y, robot.width, robot.length))
     self.draw_sensors(robot)
 
-  def draw_spiral(self, midx, midy):
+  def draw_spiral(self):
     loops = 5 # För tätare, öka denna
     scale = 0.2 # För större spiral, öka denna
+    x1 = self.window_width // 2
+    y1 = self.window_height // 2
+
     for angle in range(0, 360 * loops, 1):
       radius = scale * angle 
-      x = int(midx + radius * math.cos(math.radians(angle)))
-      y = int (midy + radius * math.sin(math.radians(angle)))
+      x = int(x1 + radius * math.cos(math.radians(angle)))
+      y = int (y1 + radius * math.sin(math.radians(angle)))
       pygame.draw.circle(self.screen, (255, 255, 255), (x, y), 5)
 
   def draw_line(self):

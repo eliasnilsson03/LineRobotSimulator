@@ -24,6 +24,7 @@ class Robot:
         self.last_pv = 0
         self.last_u = 0
         self.last_on_line_pos = Pos(0, 0, 0)
+        self.lost_timer = 0
         
         # Skapar tre sensorer alla längst fram, en placerad till vänster, en i mitten och en till höger
         # En sensor tar in värdena (x, y, theta, avstånd från mitt längdriktning, offset sidled)
@@ -76,8 +77,29 @@ class Robot:
          
     def lost_line(self, dt):
         print("I lost the line!")
+        # lost timer ökas med dt varje gång metoden körs
+        self.lost_timer += dt
+
+        # om last_pv positiv linjen låg mer mot vänster, leta mer vänster
+        # om negativa - leta höger
+        # om 0, standard riktning
+        if self.last_pv > 0:
+            
+
+        # börja med liten sökning
+        # långsamt framåt, konstant liten sväng i båge
 
         # uppdatera sensornas positioner
         for s in self.sensors:
             s.update(self.pos.x, self.pos.y, self.pos.theta)
         
+        # lost timer blir större än t.ex. en sekund
+        # byt till search wide, nollställ timer
+        # linjär hastighet = 0
+        # rotera i 90 grader från start theta
+        # byt håll
+        # rotera tillbaka förbi startvinkeln, t.ex. 180-270 grader
+        # håll reda på det genom att summera omega * dt i separat variabel
+
+        # om roterar t.ex. 360 grader, backtracka
+
